@@ -152,7 +152,7 @@ const Quiz = () => {
                     {option}
                   </Box>
                   <Flex alignItems="center" justifyContent="center">
-                    <Button fontWeight="bold" fontSize={{ base: '11px', md: '12px', lg: '16px' }} color="#3a0063" colorScheme="transparent" variant="solid" w="80%">
+                    <Button fontWeight="bold" fontSize="1rem" color="#3a0063" colorScheme="transparent" variant="solid" w="80%">
                       {message}
                     </Button>
                     {isLastQuestion ? (
