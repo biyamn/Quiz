@@ -34,18 +34,18 @@ const Home = () => {
     <Card height={['100%', '80%', '60%']} width={['100%', '75%', '50%']}  variant='filled' bg='#faf2ff'>
       <CardBody>
         <Flex  alignItems="center" justifyContent="center" flexDirection="column" h='100%'>
-            <Text color='#6c23a1' fontSize={{ base: '20px', md: '30px', lg: '40px' }}>🔮 오늘의 퀴즈 🔮</Text>
+            <Text color='#6c23a1' fontSize={{ base: '25px', md: '35px', lg: '45px' }}>🔮 오늘의 퀴즈 🔮</Text>
             <Box py="7%" px="10%" w="100%">
               <form onSubmit={handleStartButtonClick}>
                 <Flex flexDirection="row" alignItems="center" justifyContent="center" w="100%">
                   <Input 
-                    color='#6c23a1' w='60%' variant='ghost' type="text" mr="10%" fontSize={{ base: '10px', md: '12px', lg: '16px' }}
+                    color='#6c23a1' w='60%' variant='ghost' type="text" mr="10%" fontSize={{ base: '11px', md: '12px', lg: '16px' }}
                     value={nickname} 
                     onChange={handleNicknameChange} 
                     placeholder="닉네임을 입력해주세요" 
                   />
                   <Button 
-                    fontWeight='medium' fontSize={{ base: '10px', md: '12px', lg: '16px' }} colorScheme='purple' variant='solid' w='20%' 
+                    fontWeight='medium' fontSize={{ base: '11px', md: '12px', lg: '16px' }} colorScheme='purple' variant='solid' w='20%' 
                     type="submit" 
                     isDisabled={!isNicknameValid} 
                   >
