@@ -100,7 +100,7 @@ const Quiz = () => {
   if (fetchStatus === "loading" || fetchStatus === "init") {
     return (
       <Flex w="calc(100wh)" h="calc(100vh)" alignItems="center" justifyContent="center" p="1%">
-        <Card h="60%" w="50%" variant="filled" bg="#faf2ff">
+        <Card height={['100%', '80%', '70%', '60%']} width={['100%', '80%', '60%', '50%']} variant="filled" bg="#faf2ff">
           <CardBody>
             <Stack>
               <Skeleton height="40px" />
