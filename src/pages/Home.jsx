@@ -31,7 +31,7 @@ const Home = () => {
 
   return (
     <Flex w='calc(100wh)' h='calc(100vh)' alignItems="center" justifyContent="center">
-    <Card height={['100%', '80%', '60%']} width={['100%', '75%', '50%']}  variant='filled' bg='#faf2ff'>
+    <Card height={['100%', '80%', '70%', '60%']} width={['100%', '80%', '60%', '50%']}  variant='filled' bg='#faf2ff'>
       <CardBody>
         <Flex  alignItems="center" justifyContent="center" flexDirection="column" h='100%'>
             <Text color='#6c23a1' fontSize={{ base: '25px', md: '35px', lg: '45px' }}>🔮 오늘의 퀴즈 🔮</Text>

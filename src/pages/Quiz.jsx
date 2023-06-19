@@ -122,10 +122,10 @@ const Quiz = () => {
           name="option.question"
           value={option}
           disabled={userAnswer.length !== currentQuestionIndex}
-          style={{ margin: "2%", width: "1.25em", height: "1.25em", verticalAlign: "middle" }}
+          style={{ margin: "2%", width: "1.25em", height: "1.25em", verticalAlign: "middle"}}
         />
         <label
-          style={{ fontSize: "1.2rem" }}
+          style={{ fontSize: "1rem" }}
           dangerouslySetInnerHTML={{ __html: option }}
         />
       </div>
@@ -147,12 +147,12 @@ const Quiz = () => {
             <CardBody>
               <Flex flexDirection="column" h="100%">
                 <form onSubmit={handleSubmit}>
-                  <Box ml="2%" color="#7a00d1" h="6rem" display="inline-block" as="b" fontSize="2xl" dangerouslySetInnerHTML={{ __html: currentQuestion.question }}/>
+                  <Box ml="2%" color="#7a00d1" h="6rem" display="inline-block" as="b" fontSize={{ base: '17px', md: '20px', lg: '25px' }} dangerouslySetInnerHTML={{ __html: currentQuestion.question }}/>
                   <Box color="#00000" h="15rem" fontSize="lg">
                     {option}
                   </Box>
                   <Flex alignItems="center" justifyContent="center">
-                    <Button fontWeight="bold" fontSize="1.2rem" color="#3a0063" colorScheme="transparent" variant="solid" w="80%">
+                    <Button fontWeight="bold" fontSize={{ base: '11px', md: '12px', lg: '16px' }} color="#3a0063" colorScheme="transparent" variant="solid" w="80%">
                       {message}
                     </Button>
                     {isLastQuestion ? (
