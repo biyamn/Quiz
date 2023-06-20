@@ -13,7 +13,10 @@ const Result = () => {
         <CardBody>
           <Flex alignItems="center" justifyContent="center" flexDirection="column" h="100%">
             <Text color="#6c23a1" fontSize={{ base: '25px', md: '35px', lg: '45px' }}>
-              🎉 <b>{location.state.nickname}님</b>의 결과는? <b>{Math.floor((correctNumber / sumNumber) * 100)}점!!</b> 🎉
+              <b>{location.state.nickname}님</b>의 결과는?
+            </Text>
+            <Text color="purple" fontSize={{ base: '25px', md: '35px', lg: '45px' }}>
+            🎉 <b>{Math.floor((correctNumber / sumNumber) * 100)}점!!</b> 🎉
             </Text>
             <Flex alignItems="center" justifyContent="center" flexDirection="column" mt="4rem">
               <Text fontSize="1.3rem">
