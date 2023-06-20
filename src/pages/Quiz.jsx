@@ -116,7 +116,6 @@ const Quiz = () => {
     const isLastQuestion = currentQuestionIndex === backendData.length - 1;
     const option = currentQuestion.options.map((option, index) => (
       <div key={`${currentQuestionIndex}-${index}`}>
-        
         <input
           onChange={handleChange}
           type="radio"
@@ -141,6 +140,8 @@ const Quiz = () => {
     } else {
       message = "오답입니다😥";
     }
+    
+    const answerNumber =  backendData[currentQuestionIndex].options.indexOf(backendData[currentQuestionIndex].answer) + 1;
 
     return (
       <>
@@ -156,11 +157,13 @@ const Quiz = () => {
                   <Flex>
                     <Flex display="column">
                       <Button fontWeight="bold" fontSize="1rem" color="#3a0063" colorScheme="transparent" variant="solid" w="80%">
-                        {message} {userAnswer.length === currentQuestionIndex + 1 && !userAnswer[currentQuestionIndex].isCorrect && <Text>&nbsp;&nbsp;(정답: {currentQuestionIndex+1}번)</Text>}
-                      </Button>
+                      
+                        {message} {userAnswer.length === currentQuestionIndex + 1 && !userAnswer[currentQuestionIndex].isCorrect && 
+                        <Text>&nbsp;&nbsp;(정답: {answerNumber}번) <span dangerouslySetInnerHTML={{ __html: backendData[currentQuestionIndex].answer }}></span></Text>}
+                    </Button>
                     </Flex>
                     <Spacer />
-                    <Flex align="right" justifyContent="flex-end">
+                    <Flex>
                     {isLastQuestion ? (
                       <>
                         {userAnswer.length === backendData.length && (
