@@ -2,8 +2,6 @@
 <div align="center">
   <img src='https://github.com/biyamn/Quize-Web-App/assets/101965666/ccf5de02-8b63-48c7-ad6f-d72a07c5a32c' width="50%"/>
 
-  아이테크 프론트엔드 과제입니다.
-
   **프로젝트 기간**: 2023년 6월 14일 ~ 2023년 6월 19일<br />
 
   **배포 링크**: https://quize-web-app.netlify.app/
@@ -36,6 +34,11 @@ $ npm run dev
 |:--:|:--:|
 |결과 페이지로 이동|결과 페이지<br />|
 
+### 4. 반응형 레이아웃
+|![데스크탑](https://github.com/biyamn/quiz-personal-version/assets/101965666/e33497b0-b41d-473f-b1df-632541caeb55)|![모바일](https://github.com/biyamn/quiz-personal-version/assets/101965666/bd7f2fb4-77fd-4caf-8c7b-93aabd912ce2)|
+|:--:|:--:|
+|데스크탑|모바일<br />|
+
 <br />
 
 ## 기술 스택
@@ -67,6 +70,3 @@ $ npm run dev
   - [x] 오답 수
 
 <br />
-
-## 추후 개선할 점
-성능 개선을 위해 useCallback, useMemo 등의 사용을 시도해보았지만 해당 프로젝트에 적용하지 못했습니다. 추후에 성능을 개선할 부분을 찾아 리팩토링할 예정입니다.
