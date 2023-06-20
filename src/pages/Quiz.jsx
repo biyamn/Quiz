@@ -159,7 +159,7 @@ const Quiz = () => {
                       <Button fontWeight="bold" fontSize="1rem" color="#3a0063" colorScheme="transparent" variant="solid" w="80%">
                       
                         {message} {userAnswer.length === currentQuestionIndex + 1 && !userAnswer[currentQuestionIndex].isCorrect && 
-                        <Text>&nbsp;&nbsp;(정답: {answerNumber}번) <span dangerouslySetInnerHTML={{ __html: backendData[currentQuestionIndex].answer }}></span></Text>}
+                        <Text>&nbsp;&nbsp;(정답: {answerNumber}번)</Text>}
                     </Button>
                     </Flex>
                     <Spacer />
