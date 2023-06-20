@@ -39,7 +39,7 @@ const Home = () => {
               <form onSubmit={handleStartButtonClick}>
                 <Flex flexDirection="row" alignItems="center" justifyContent="center" w="100%">
                   <Input 
-                    color='#6c23a1' w='60%' variant='ghost' type="text" mr="10%" fontSize={{ base: '13px', md: '15px', lg: '17px' }}
+                    color='#6c23a1' w='60%' variant='ghost' type="text" mr="5%" fontSize={{ base: '13px', md: '15px', lg: '17px' }}
                     value={nickname} 
                     onChange={handleNicknameChange} 
                     placeholder="닉네임을 입력해주세요" 
