@@ -35,7 +35,7 @@ $ npm run dev
 |결과 페이지로 이동|결과 페이지<br />|
 
 ### 4. 반응형 레이아웃
-|![데스크탑](https://github.com/biyamn/quiz-personal-version/assets/101965666/e33497b0-b41d-473f-b1df-632541caeb55)|![모바일](https://github.com/biyamn/quiz-personal-version/assets/101965666/bd7f2fb4-77fd-4caf-8c7b-93aabd912ce2)|
+|![데스크탑](https://github.com/biyamn/Quiz-App/assets/101965666/666c2274-aed2-4efc-9a02-8ee9d2a225c6)|![모바일](https://github.com/biyamn/Quiz-App/assets/101965666/b148f9c9-ca37-4622-8a1e-905592c6da16)|
 |:--:|:--:|
 |데스크탑|모바일<br />|
 
