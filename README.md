@@ -1,3 +1,5 @@
+📝 이미지 링크 수정 예정
+
 # 컴퓨터 상식 퀴즈앱
 <div align="center">
   <img src='https://github.com/biyamn/Quize-Web-App/assets/101965666/ccf5de02-8b63-48c7-ad6f-d72a07c5a32c' width="50%"/>
