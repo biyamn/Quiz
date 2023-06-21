@@ -1,12 +1,10 @@
-# 아이테크 프론트엔드 - 선발 과제
+# 컴퓨터 상식 퀴즈앱
 <div align="center">
   <img src='https://github.com/biyamn/Quize-Web-App/assets/101965666/ccf5de02-8b63-48c7-ad6f-d72a07c5a32c' width="50%"/>
 
-  아이테크 프론트엔드 과제입니다.
-
   **프로젝트 기간**: 2023년 6월 14일 ~ 2023년 6월 19일<br />
 
-  **배포 링크**: https://quize-web-app.netlify.app/
+  **배포 링크**: https://quiz-zik.netlify.app/
 </div>
 
 <br />
@@ -35,6 +33,11 @@ $ npm run dev
 |![결과 보러가기](https://github.com/biyamn/Quize-Web-App/assets/101965666/8b79947f-d7ba-4bdd-b658-6be135dc54a9)|![결과페이지](https://github.com/biyamn/Quize-Web-App/assets/101965666/c9634069-5e43-409b-8858-f40a647fd523)|
 |:--:|:--:|
 |결과 페이지로 이동|결과 페이지<br />|
+
+### 4. 반응형 레이아웃
+|![데스크탑](https://github.com/biyamn/Quiz-App/assets/101965666/666c2274-aed2-4efc-9a02-8ee9d2a225c6)|![모바일](https://github.com/biyamn/Quiz-App/assets/101965666/b148f9c9-ca37-4622-8a1e-905592c6da16)|
+|:--:|:--:|
+|데스크탑|모바일<br />|
 
 <br />
 
@@ -67,9 +70,5 @@ $ npm run dev
   - [x] 점수
   - [x] 정답 개수
   - [x] 오답 수
-  - [x] 소요 시간 
 
 <br />
-
-## 추후 개선할 점
-성능 개선을 위해 useCallback, useMemo 등의 사용을 시도해보았지만 해당 프로젝트에 적용하지 못했습니다. 추후에 성능을 개선할 부분을 찾아 리팩토링할 예정입니다.

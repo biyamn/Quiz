@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Flex, Stack, Skeleton, Box, Button, Card, CardBody } from "@chakra-ui/react";
+import { Flex, Stack, Skeleton, Box, Button, Card, Text, CardBody, Spacer, HStack } from "@chakra-ui/react";
 
 const Quiz = () => {
   const navigate = useNavigate();
@@ -124,6 +124,7 @@ const Quiz = () => {
           disabled={userAnswer.length !== currentQuestionIndex}
           style={{ margin: "2%", width: "1.25em", height: "1.25em", verticalAlign: "middle"}}
         />
+        {index+1}.&nbsp;&nbsp;
         <label
           style={{ fontSize: "1rem" }}
           dangerouslySetInnerHTML={{ __html: option }}
@@ -135,10 +136,12 @@ const Quiz = () => {
     if (userAnswer.length === currentQuestionIndex) {
       message = "";
     } else if (userAnswer[currentQuestionIndex].isCorrect) {
-      message = "정답입니다!";
+      message = "정답입니다🥳";
     } else {
-      message = "오답입니다!";
+      message = "오답입니다😥";
     }
+    
+    const answerNumber =  backendData[currentQuestionIndex].options.indexOf(backendData[currentQuestionIndex].answer) + 1;
 
     return (
       <>
@@ -151,15 +154,21 @@ const Quiz = () => {
                   <Box color="#00000" h="15rem" fontSize="lg">
                     {option}
                   </Box>
-                  <Flex alignItems="center" justifyContent="center">
-                    <Button fontWeight="bold" fontSize="1rem" color="#3a0063" colorScheme="transparent" variant="solid" w="80%">
-                      {message}
+                  <Flex>
+                    <Flex display="column">
+                      <Button fontWeight="bold" fontSize="1rem" color="#3a0063" colorScheme="transparent" variant="solid" w="80%">
+                      
+                        {message} {userAnswer.length === currentQuestionIndex + 1 && !userAnswer[currentQuestionIndex].isCorrect && 
+                        <Text>&nbsp;&nbsp;(정답: {answerNumber}번)</Text>}
                     </Button>
+                    </Flex>
+                    <Spacer />
+                    <Flex>
                     {isLastQuestion ? (
                       <>
                         {userAnswer.length === backendData.length && (
                           <Button 
-                            fontWeight="bold" fontSize="1rem" w="80%" colorScheme="green" variant="solid" 
+                            fontWeight="bold" fontSize="1rem" w="100%" colorScheme="green" variant="solid" 
                             onClick={handleSubmitAnswers}
                           >
                             결과 보러 가기
@@ -167,9 +176,9 @@ const Quiz = () => {
                         )}
                       </>
                     ) : (
-                      <Box w="50%">
+                      <Box w="100%">
                         <Button 
-                          fontWeight="medium" fontSize="1rem" colorScheme="purple" variant="solid" w="80%" 
+                          fontWeight="medium" fontSize="1rem" colorScheme="purple" variant="solid" w="100%" 
                           type="submit" 
                           onClick={handleNextQuestion}
                         >
@@ -178,8 +187,10 @@ const Quiz = () => {
                       </Box>
                     )}
                   </Flex>
+                    </Flex>
                 </form>
               </Flex>
+              
             </CardBody>
           </Card>
         </Flex>

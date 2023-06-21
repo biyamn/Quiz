@@ -35,17 +35,17 @@ const Home = () => {
       <CardBody>
         <Flex  alignItems="center" justifyContent="center" flexDirection="column" h='100%'>
             <Text color='#6c23a1' fontSize={{ base: '25px', md: '35px', lg: '45px' }}>🔮 오늘의 퀴즈 🔮</Text>
-            <Box py="7%" px="10%" w="100%">
+            <Box pt="5%" w="100%">
               <form onSubmit={handleStartButtonClick}>
                 <Flex flexDirection="row" alignItems="center" justifyContent="center" w="100%">
                   <Input 
-                    color='#6c23a1' w='60%' variant='ghost' type="text" mr="10%" fontSize={{ base: '11px', md: '12px', lg: '16px' }}
+                    color='#6c23a1' w='60%' variant='ghost' type="text" mr="5%" fontSize={{ base: '13px', md: '15px', lg: '17px' }}
                     value={nickname} 
                     onChange={handleNicknameChange} 
                     placeholder="닉네임을 입력해주세요" 
                   />
                   <Button 
-                    fontWeight='medium' fontSize={{ base: '11px', md: '12px', lg: '16px' }} colorScheme='purple' variant='solid' w='20%' 
+                    fontWeight='medium' fontSize={{ base: '13px', md: '15px', lg: '17px' }} colorScheme='purple' variant='solid' w='20%' 
                     type="submit" 
                     isDisabled={!isNicknameValid} 
                   >
