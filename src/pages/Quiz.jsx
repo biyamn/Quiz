@@ -126,7 +126,7 @@ const Quiz = () => {
         />
         {index+1}.&nbsp;&nbsp;
         <label
-          style={{ fontSize: "1rem" }}
+          fontSize={{ base: '1rem', md: '1.1rem', lg: '1.2rem' }}
           dangerouslySetInnerHTML={{ __html: option }}
         />
       </div>
@@ -150,43 +150,43 @@ const Quiz = () => {
             <CardBody>
               <Flex flexDirection="column" h="100%">
                 <form onSubmit={handleSubmit}>
-                  <Box ml="2%" color="#7a00d1" h="6rem" display="inline-block" as="b" fontSize={{ base: '17px', md: '20px', lg: '25px' }} dangerouslySetInnerHTML={{ __html: `[${currentQuestionIndex+1}/${backendData.length}번] ${currentQuestion.question}`}}/>
-                  <Box color="#00000" h="15rem" fontSize="lg">
+                  <Box color="#560094" display="block" as="b" fontSize={{ base: '17px', md: '20px', lg: '25px' }}>[{currentQuestionIndex+1}/{backendData.length}]</Box>
+                  <Box color="#7a00d1" h="6rem"  as="b" fontSize={{ base: '17px', md: '20px', lg: '25px' }} dangerouslySetInnerHTML={{ __html: currentQuestion.question}}/>
+                  <Box color="#00000" h="15rem" as="b" fontSize={{ base: '1rem', md: '1.1rem', lg: '1.2rem' }} >
                     {option}
                   </Box>
                   <Flex>
                     <Flex display="column">
                       <Button fontWeight="bold" fontSize="1rem" color="#3a0063" colorScheme="transparent" variant="solid" w="80%">
-                      
                         {message} {userAnswer.length === currentQuestionIndex + 1 && !userAnswer[currentQuestionIndex].isCorrect && 
                         <Text>&nbsp;&nbsp;(정답: {answerNumber}번)</Text>}
-                    </Button>
-                    </Flex>
-                    <Spacer />
-                    <Flex>
-                    {isLastQuestion ? (
-                      <>
-                        {userAnswer.length === backendData.length && (
-                          <Button 
-                            fontWeight="bold" fontSize="1rem" w="100%" colorScheme="green" variant="solid" 
-                            onClick={handleSubmitAnswers}
-                          >
-                            결과 보러 가기
-                          </Button>
+                      </Button>
+                      </Flex>
+                      <Spacer />
+                      <Flex>
+                        {isLastQuestion ? (
+                          <>
+                            {userAnswer.length === backendData.length && (
+                              <Button 
+                                fontWeight="bold" fontSize="1rem" w="100%" colorScheme="green" variant="solid" 
+                                onClick={handleSubmitAnswers}
+                              >
+                                결과 보러 가기
+                              </Button>
+                            )}
+                          </>
+                        ) : (
+                          <Box w="100%">
+                            <Button 
+                              fontWeight="medium" fontSize="1rem" colorScheme="purple" variant="solid" w="100%" 
+                              type="submit" 
+                              onClick={handleNextQuestion}
+                            >
+                              다음 문제로
+                            </Button>
+                          </Box>
                         )}
-                      </>
-                    ) : (
-                      <Box w="100%">
-                        <Button 
-                          fontWeight="medium" fontSize="1rem" colorScheme="purple" variant="solid" w="100%" 
-                          type="submit" 
-                          onClick={handleNextQuestion}
-                        >
-                          다음 문제로
-                        </Button>
-                      </Box>
-                    )}
-                  </Flex>
+                      </Flex>
                     </Flex>
                 </form>
               </Flex>
