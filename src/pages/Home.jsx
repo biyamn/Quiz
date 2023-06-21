@@ -34,7 +34,7 @@ const Home = () => {
     <Card height={['100%', '80%', '70%', '60%']} width={['100%', '80%', '60%', '50%']}  variant='filled' bg='#faf2ff'>
       <CardBody>
         <Flex  alignItems="center" justifyContent="center" flexDirection="column" h='100%'>
-            <Text color='#6c23a1' fontSize={{ base: '25px', md: '35px', lg: '45px' }}>🔮 오늘의 퀴즈 🔮</Text>
+            <Text color='#6c23a1' fontSize={{ base: '25px', md: '35px', lg: '45px' }}>🔮 컴퓨터 상식 퀴즈 🔮</Text>
             <Box pt="5%" w="100%">
               <form onSubmit={handleStartButtonClick}>
                 <Flex flexDirection="row" alignItems="center" justifyContent="center" w="100%">
