@@ -39,13 +39,13 @@ const Home = () => {
               <form onSubmit={handleStartButtonClick}>
                 <Flex flexDirection="row" alignItems="center" justifyContent="center" w="100%">
                   <Input 
-                    color='#6c23a1' w='60%' variant='ghost' type="text" mr="5%" fontSize={{ base: '13px', md: '15px', lg: '17px' }}
+                    color='#6c23a1' width={['60%', '50%','50%', '50%']} variant='ghost' type="text" mr="2%" fontSize={{ base: '13px', md: '15px', lg: '17px' }}
                     value={nickname} 
                     onChange={handleNicknameChange} 
                     placeholder="닉네임을 입력해주세요" 
                   />
                   <Button 
-                    fontWeight='medium' fontSize={{ base: '13px', md: '15px', lg: '17px' }} colorScheme='purple' variant='solid' w='20%' 
+                    fontWeight='medium' fontSize={{ base: '13px', md: '15px', lg: '17px' }} colorScheme='purple' variant='solid' width={['20%', '12%', '12%', '12%']}
                     type="submit" 
                     isDisabled={!isNicknameValid} 
                   >
