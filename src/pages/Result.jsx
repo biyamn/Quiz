@@ -18,14 +18,14 @@ const Result = () => {
             <Text color="purple" fontSize={{ base: '25px', md: '35px', lg: '45px' }}>
             🎉 <b>{Math.floor((correctNumber / sumNumber) * 100)}점!!</b> 🎉
             </Text>
-            <Flex alignItems="center" justifyContent="center" flexDirection="column" mt="4rem">
-              <Text fontSize="1.3rem">
+            <Flex alignItems="center" justifyContent="center" flexDirection="column" mt="3rem">
+              <Text color="#6c23a1" fontSize="1.3rem">
                 정답: ({correctNumber}/{sumNumber})개
               </Text>
-              <Text fontSize="1.3rem" mt="1rem">
+              <Text color="#6c23a1" fontSize="1.3rem" mt="1rem">
                 오답: ({incorrectNumber}/{sumNumber})개
               </Text>
-              <Text fontSize="1.3rem" mt="1rem">
+              <Text color="#6c23a1" fontSize="1.3rem" mt="1rem">
                 시간: {location.state.timeTaken}초
               </Text>
             </Flex>
