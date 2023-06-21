@@ -1,11 +1,16 @@
-import { useLocation } from 'react-router-dom';
-import { Flex, Text, Card, CardBody } from '@chakra-ui/react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Flex, Text, Card, CardBody, Button } from '@chakra-ui/react';
 
 const Result = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const correctNumber = location.state.numberOfCorrect;
   const incorrectNumber = location.state.numberOfIncorrect;
   const sumNumber = correctNumber + incorrectNumber;
+  
+  const buttonHandler = () => {
+    navigate('/');
+  }
 
   return (
     <Flex w="calc(100wh)" h="calc(100vh)" alignItems="center" justifyContent="center">
@@ -28,6 +33,7 @@ const Result = () => {
               <Text color="#6c23a1" fontSize="1.3rem" mt="1rem">
                 시간: {location.state.timeTaken}초
               </Text>
+              <Button mt="3rem" colorScheme='purple' width="10rem" onClick={buttonHandler}>다시 풀기</Button>
             </Flex>
           </Flex>
         </CardBody>
