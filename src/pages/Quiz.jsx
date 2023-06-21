@@ -150,7 +150,7 @@ const Quiz = () => {
             <CardBody>
               <Flex flexDirection="column" h="100%">
                 <form onSubmit={handleSubmit}>
-                  <Box ml="2%" color="#7a00d1" h="6rem" display="inline-block" as="b" fontSize={{ base: '17px', md: '20px', lg: '25px' }} dangerouslySetInnerHTML={{ __html: currentQuestion.question }}/>
+                  <Box ml="2%" color="#7a00d1" h="6rem" display="inline-block" as="b" fontSize={{ base: '17px', md: '20px', lg: '25px' }} dangerouslySetInnerHTML={{ __html: `[${currentQuestionIndex+1}/${backendData.length}번] ${currentQuestion.question}`}}/>
                   <Box color="#00000" h="15rem" fontSize="lg">
                     {option}
                   </Box>
