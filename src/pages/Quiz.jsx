@@ -155,20 +155,20 @@ const Quiz = () => {
                   <Box color="#00000" h="15rem" as="b" fontSize={{ base: '1rem', md: '1.1rem', lg: '1.2rem' }} >
                     {option}
                   </Box>
-                  <Flex>
-                    <Flex display="column">
-                      <Button fontWeight="bold" fontSize="1rem" color="#3a0063" colorScheme="transparent" variant="solid" w="80%">
+                  <Spacer></Spacer>
+                  <Flex mt="5%">
+                      <Button mb='1%' fontWeight="medium" fontSize="1rem" colorScheme={userAnswer[currentQuestionIndex] ? (userAnswer[currentQuestionIndex].isCorrect ? 'green' : 'red') : 'transparent'} variant="solid" w="100%">
                         {message} {userAnswer.length === currentQuestionIndex + 1 && !userAnswer[currentQuestionIndex].isCorrect && 
-                        <Text>&nbsp;&nbsp;(정답: {answerNumber}번)</Text>}
+                        <Text fontSize={{ base: '1rem', md: '1.1rem', lg: '1.2rem' }}>&nbsp;&nbsp;(정답: {answerNumber}번)</Text>}
                       </Button>
                       </Flex>
-                      <Spacer />
+                      
                       <Flex>
                         {isLastQuestion ? (
                           <>
                             {userAnswer.length === backendData.length && (
                               <Button 
-                                fontWeight="bold" fontSize="1rem" w="100%" colorScheme="green" variant="solid" 
+                                fontWeight="bold" fontSize="1rem" w="100%" colorScheme="messenger" variant="solid" 
                                 onClick={handleSubmitAnswers}
                               >
                                 결과 보러 가기
@@ -187,7 +187,6 @@ const Quiz = () => {
                           </Box>
                         )}
                       </Flex>
-                    </Flex>
                 </form>
               </Flex>
               
