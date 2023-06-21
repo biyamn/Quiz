@@ -4,7 +4,7 @@
 
   **프로젝트 기간**: 2023년 6월 14일 ~ 2023년 6월 19일<br />
 
-  **배포 링크**: https://quize-web-app.netlify.app/
+  **배포 링크**: https://quiz-zik.netlify.app/
 </div>
 
 <br />
