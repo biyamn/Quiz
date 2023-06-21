@@ -159,7 +159,7 @@ const Quiz = () => {
                   <Flex mt="5%">
                       <Button mb='1%' fontWeight="medium" fontSize="1rem" colorScheme={userAnswer[currentQuestionIndex] ? (userAnswer[currentQuestionIndex].isCorrect ? 'green' : 'red') : 'transparent'} variant="solid" w="100%">
                         {message} {userAnswer.length === currentQuestionIndex + 1 && !userAnswer[currentQuestionIndex].isCorrect && 
-                        <Text fontSize={{ base: '1rem', md: '1.1rem', lg: '1.2rem' }}>&nbsp;&nbsp;(정답: {answerNumber}번)</Text>}
+                        <Text fontSize='1rem'>&nbsp;&nbsp;(정답: {answerNumber}번)</Text>}
                       </Button>
                       </Flex>
                       
