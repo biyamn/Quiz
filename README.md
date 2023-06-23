@@ -1,5 +1,3 @@
-📝 이미지 링크 수정 예정
-
 # 컴퓨터 상식 퀴즈앱
 <div align="center">
   <img src='https://github.com/biyamn/Quiz-App/assets/101965666/073258a9-4904-4e04-9c17-d606bece029b' width="50%"/>
@@ -71,4 +69,8 @@ $ npm run dev
   - [x] 정답 개수
   - [x] 오답 수
   - [x] 소요 시간
+- [x] 반응형 레이아웃을 구현한다
+  - [x] 데스크탑
+  - [x] 모바일
+
 <br />
