@@ -57,25 +57,14 @@ const Quiz = () => {
 
   const handleChange = (event) => {
     if (event.target.checked) {
-      if (event.target.value === backendData[currentQuestionIndex].answer) {
         setUserAnswer([
           ...userAnswer,
           {
             question: backendData[currentQuestionIndex].question,
             answer: event.target.value,
-            isCorrect: true,
+            isCorrect: event.target.value === backendData[currentQuestionIndex].answer,
           },
         ]);
-      } else {
-        setUserAnswer([
-          ...userAnswer,
-          {
-            question: backendData[currentQuestionIndex].question,
-            answer: event.target.value,
-            isCorrect: false,
-          },
-        ]);
-      }
     }
   };
 
