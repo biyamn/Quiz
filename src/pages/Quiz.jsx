@@ -122,7 +122,7 @@ const Quiz = () => {
           name="option.question"
           value={option}
           disabled={userAnswer.length !== currentQuestionIndex}
-          style={{ margin: "2%", width: "1.25em", height: "1.25em", verticalAlign: "middle"}}
+          style={{ margin: "2%", width: "1.1rem", height: "1.1rem", verticalAlign: "middle"}}
         />
         {index+1}.&nbsp;&nbsp;
         <label
@@ -151,12 +151,12 @@ const Quiz = () => {
               <Flex flexDirection="column" h="100%">
                 <form onSubmit={handleSubmit}>
                   <Box color="#560094" display="block" as="b" fontSize={{ base: '17px', md: '20px', lg: '25px' }}>[{currentQuestionIndex+1}/{backendData.length}]</Box>
-                  <Box color="#7a00d1" h="6rem"  as="b" fontSize={{ base: '17px', md: '20px', lg: '25px' }} dangerouslySetInnerHTML={{ __html: currentQuestion.question}}/>
-                  <Box color="#00000" h="15rem" as="b" fontSize={{ base: '1rem', md: '1.1rem', lg: '1.2rem' }} >
+                  <Box color="#7a00d1" h="6rem"  as="b" fontSize={{ base: '15px', md: '17px', lg: '20px' }} dangerouslySetInnerHTML={{ __html: currentQuestion.question}}/>
+                  <Box color="#00000" h="15rem" as="b" fontSize={{ base: '13px', md: '15px', lg: '17px' }} >
                     {option}
                   </Box>
                   <Spacer></Spacer>
-                  <Flex mt="5%">
+                  <Flex mt="2%">
                       <Button mb='1%' fontWeight="medium" fontSize="1rem" colorScheme={userAnswer[currentQuestionIndex] ? (userAnswer[currentQuestionIndex].isCorrect ? 'green' : 'red') : 'transparent'} variant="solid" w="100%">
                         {message} {userAnswer.length === currentQuestionIndex + 1 && !userAnswer[currentQuestionIndex].isCorrect && 
                         <Text fontSize='1rem'>&nbsp;&nbsp;(정답: {answerNumber}번)</Text>}

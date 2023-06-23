@@ -17,7 +17,7 @@ const Result = () => {
       <Card height={['100%', '80%', '70%', '60%']} width={['100%', '80%', '60%', '50%']}  variant="filled" bg="#faf2ff">
         <CardBody>
           <Flex alignItems="center" justifyContent="center" flexDirection="column" h="100%">
-            <Text color="#6c23a1" fontSize={{ base: '25px', md: '35px', lg: '45px' }}>
+            <Text color="#6c23a1" fontSize={{ base: '25px', md: '30px', lg: '40px' }}>
               <b>{location.state.nickname}님</b>의 결과는?
             </Text>
             <Text color="purple" fontSize={{ base: '25px', md: '35px', lg: '45px' }}>
