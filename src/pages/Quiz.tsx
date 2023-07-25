@@ -4,14 +4,47 @@ import { Flex, Stack, Skeleton, Box, Button, Card, Text, CardBody, Spacer, HStac
 
 const Quiz = () => {
   const navigate = useNavigate();
-  const [backendData, setBackendData] = useState([]);
+  // backendData 타입이 never로 떠서 BackendData 타입을 만들고 useState에 타입을 넣어줌
+  const [backendData, setBackendData] = useState<BackendData>([]);
   const [fetchStatus, setFetchStatus] = useState("init");
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [userAnswer, setUserAnswer] = useState([]);
-  const [endTime, setEndTime] = useState(null);
+  const [userAnswer, setUserAnswer] = useState<UserAnswer>([]);
+  const [endTime, setEndTime] = useState<EndTime>(null);
 
   const location = useLocation();
   const startTime = location.state.startTime;
+
+  type Question = {
+    category: string;
+    type: string;
+    difficulty: string;
+    question: string;
+    correct_answer: string;
+    incorrect_answers: Array<string>;
+    // incorrect_answers: string[];
+  }
+
+  type UserAnswer = {
+    question: string;
+    answer: string;
+    isCorrect: boolean;
+  }[];
+
+  type NewQuestion = {
+    question: string;
+    answer: string;
+    isCorrect: boolean;
+  };
+  
+  // backendData가 맨 처음에는 없다가 로딩되면 생김
+  // 이렇게 하면 Array 안에 이런 객체들이 4개 들어가도 되는 건가.. 이건 하나만 정의한 거 아닌가..
+  type BackendData = {
+    question: string;
+    answer: string;
+    options: Array<string>;
+  }[];
+
+  type EndTime = number | null;
 
   const fetchData = async () => {
     setFetchStatus("loading");
@@ -20,7 +53,8 @@ const Quiz = () => {
         "https://opentdb.com/api.php?amount=4&category=18&type=multiple"
       );
       const data = await response.json();
-      const newData = data.results.map((question) => {
+      const newData = data.results.map((question: Question) => {
+        console.log("question", question);
         const answer = question.correct_answer;
         const random = [
           question.correct_answer,
@@ -51,20 +85,26 @@ const Quiz = () => {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
 
-  const handleChange = (event) => {
+  
+  
+  // console.log('bakendData', backendData)
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-        setUserAnswer([
-          ...userAnswer,
-          {
-            question: backendData[currentQuestionIndex].question,
-            answer: event.target.value,
-            isCorrect: event.target.value === backendData[currentQuestionIndex].answer,
-          },
-        ]);
+      const newQuestion: NewQuestion = {
+        question: backendData[currentQuestionIndex].question,
+        answer: event.target.value,
+        isCorrect: event.target.value === backendData[currentQuestionIndex].answer,
+      };
+      
+      setUserAnswer([
+        ...userAnswer,
+        newQuestion,
+      ]);
     }
   };
 
@@ -73,7 +113,8 @@ const Quiz = () => {
       (answer) => answer.isCorrect === true
     ).length;
     const numberOfIncorrect = backendData.length - numberOfCorrect;
-    const endTime = new Date().getTime();
+    const endTime: EndTime = new Date().getTime();
+    console.log('endTime', endTime)
     setEndTime(endTime);
     const timeTaken = (endTime - startTime) / 1000;
     navigate("/result", {
@@ -115,7 +156,7 @@ const Quiz = () => {
         />
         {index+1}.&nbsp;&nbsp;
         <label
-          fontSize={{ base: '1rem', md: '1.1rem', lg: '1.2rem' }}
+          font-size={{ base: '1rem', md: '1.1rem', lg: '1.2rem' }}
           dangerouslySetInnerHTML={{ __html: option }}
         />
       </div>
