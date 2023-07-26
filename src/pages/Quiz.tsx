@@ -6,13 +6,15 @@ const Quiz = () => {
   const navigate = useNavigate();
   // backendData 타입이 never로 떠서 BackendData 타입을 만들고 useState에 타입을 넣어줌
   const [backendData, setBackendData] = useState<BackendData>([]);
-  const [fetchStatus, setFetchStatus] = useState("init");
+  const [fetchStatus, setFetchStatus] = useState<FetchStatus>("init");
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userAnswer, setUserAnswer] = useState<UserAnswer>([]);
   const [endTime, setEndTime] = useState<EndTime>(null);
 
   const location = useLocation();
   const startTime = location.state.startTime;
+
+  type FetchStatus = "init" | "loading" | "loaded" | "error";
 
   type Question = {
     category: string;
@@ -46,12 +48,12 @@ const Quiz = () => {
 
   type EndTime = number | null;
 
+  const url: string = "https://opentdb.com/api.php?amount=4&category=18&type=multiple" 
+
   const fetchData = async () => {
     setFetchStatus("loading");
     try {
-      const response = await fetch(
-        "https://opentdb.com/api.php?amount=4&category=18&type=multiple"
-      );
+      const response = await fetch(url);
       const data = await response.json();
       const newData = data.results.map((question: Question) => {
         console.log("question", question);
@@ -225,7 +227,9 @@ const Quiz = () => {
         </Flex>
       </>
     );
-  }
+  } else {
+    return <p>문제 데이터를 받아오지 못했습니다.</p>
+  } 
 };
 
 export default Quiz;
