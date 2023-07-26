@@ -49,7 +49,7 @@ const Quiz = () => {
   type EndTime = number | null;
 
   const url: string = "https://opentdb.com/api.php?amount=4&category=18&type=multiple" 
-
+  
   const fetchData = async () => {
     setFetchStatus("loading");
     try {
@@ -227,7 +227,7 @@ const Quiz = () => {
         </Flex>
       </>
     );
-  } else {
+  } else if (fetchStatus === "error"){
     return <p>문제 데이터를 받아오지 못했습니다.</p>
   } 
 };
