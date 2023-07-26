@@ -188,7 +188,7 @@ const Quiz = () => {
         />
         {index+1}.&nbsp;&nbsp;
         <label
-          fontSize={{ base: '1rem', md: '1.1rem', lg: '1.2rem' }}
+          font-size={{ base: '1rem', md: '1.1rem', lg: '1.2rem' }}
           dangerouslySetInnerHTML={{ __html: option }}
         />
       </div>
