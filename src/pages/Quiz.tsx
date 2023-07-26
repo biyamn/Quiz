@@ -12,7 +12,6 @@ const Quiz = () => {
   const [endTime, setEndTime] = useState<EndTime>(null);
 
   const location: Location = useLocation();
-  console.log('location: ', location)
   const startTime = location.state.startTime;
 
   type Location = {
@@ -73,6 +72,13 @@ const Quiz = () => {
     setFetchStatus("loading");
     try {
       const response = await fetch(url);
+      console.log('response: ', response)
+      // type=뒷부분은 잘못돼도 response.ok가 true로 나옴
+      // if (!response.ok) {
+      //   console.log("잘못된 URL입니다")
+      //   throw new Error("잘못된 URL입니다.");
+      // }
+      
       const data = await response.json();
       const newData = data.results.map((question: Question) => {
         console.log("question", question);
@@ -253,8 +259,9 @@ const Quiz = () => {
     );
   case "error":
     return <p>문제 데이터를 받아오지 못했습니다.</p>
-  default:
-    return <p>무언가 잘못되었습니다.</p>
+  // default:
+  //   return <p>무언가 잘못되었습니다.</p> // 얘도 됨
+  //   return fetchData // 얘도 됨
   }
 }
 
