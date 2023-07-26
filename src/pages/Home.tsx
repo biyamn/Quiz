@@ -3,18 +3,18 @@ import { useState } from 'react';
 import { Flex, Text, Box, Button, Input, Card, CardBody } from '@chakra-ui/react'
 
 const Home = () => {
-  const [nickname, setNickname] = useState(''); 
+  const [nickname, setNickname] = useState<NickName>(''); 
   const [isNicknameValid, setIsNicknameValid] = useState(false); 
-  const [startTime, setStartTime] = useState(null);
+  const [startTime, setStartTime] = useState<StartTime>(null);
 
   const navigate = useNavigate();
 
-  const handleNicknameChange = (event) => {
+  const handleNicknameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(event.target.value);
     validateNickname(event.target.value);
   }
 
-  const validateNickname = (nickname) => {
+  const validateNickname = (nickname: string) => {
     if (nickname.trim().length > 0) {
       setIsNicknameValid(true);
     } else {
@@ -22,7 +22,11 @@ const Home = () => {
     }
   }
 
-  const handleStartButtonClick = event => {
+  type NickName = string;
+
+  type StartTime = number | null;
+
+  const handleStartButtonClick = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const startTime = new Date().getTime();
     setStartTime(startTime);
