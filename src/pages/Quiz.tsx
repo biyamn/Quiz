@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Flex, Stack, Skeleton, Box, Button, Card, Text, CardBody, Spacer, HStack } from "@chakra-ui/react";
+import { Flex, Stack, Skeleton, Box, Button, Card, Text, CardBody, Spacer } from "@chakra-ui/react";
 
 const Quiz = () => {
   const navigate = useNavigate();
@@ -11,8 +11,20 @@ const Quiz = () => {
   const [userAnswer, setUserAnswer] = useState<UserAnswer>([]);
   const [endTime, setEndTime] = useState<EndTime>(null);
 
-  const location = useLocation();
+  const location: Location = useLocation();
+  console.log('location: ', location)
   const startTime = location.state.startTime;
+
+  type Location = {
+    state: {
+      nickname: string;
+      startTime: number;
+    },
+    pathname: string;
+    search: string;
+    hash: string;
+    key: string;
+  }
 
   type FetchStatus = "init" | "loading" | "loaded" | "error";
 
@@ -121,11 +133,14 @@ const Quiz = () => {
     const numberOfCorrect = userAnswer.filter(
       (answer) => answer.isCorrect === true
     ).length;
+    
     const numberOfIncorrect = backendData.length - numberOfCorrect;
     const endTime: EndTime = new Date().getTime();
-    console.log('endTime', endTime)
+
     setEndTime(endTime);
+
     const timeTaken = (endTime - startTime) / 1000;
+
     navigate("/result", {
       state: {
         numberOfCorrect: numberOfCorrect,
@@ -136,22 +151,24 @@ const Quiz = () => {
     });
   };
 
-  if (fetchStatus === "loading" || fetchStatus === "init") {
-    return (
-      <Flex w="calc(100wh)" h="calc(100vh)" alignItems="center" justifyContent="center" p="1%">
-        <Card height={['100%', '80%', '70%', '60%']} width={['100%', '80%', '60%', '50%']} variant="filled" bg="#faf2ff">
-          <CardBody>
-            <Stack>
-              <Skeleton height="40px" />
-              <Skeleton height="40px" />
-              <Skeleton height="40px" />
-            </Stack>
-          </CardBody>
-        </Card>
-      </Flex>
-    );
-  } else if (fetchStatus === "loaded") {
-    const currentQuestion = backendData[currentQuestionIndex];
+  switch (fetchStatus) {
+    case "init":
+    case "loading":
+      return (
+        <Flex w="calc(100wh)" h="calc(100vh)" alignItems="center" justifyContent="center" p="1%">
+          <Card height={['100%', '80%', '70%', '60%']} width={['100%', '80%', '60%', '50%']} variant="filled" bg="#faf2ff">
+            <CardBody>
+              <Stack>
+                <Skeleton height="40px" />
+                <Skeleton height="40px" />
+                <Skeleton height="40px" />
+              </Stack>
+            </CardBody>
+          </Card>
+        </Flex>
+      );
+    case "loaded":
+      const currentQuestion = backendData[currentQuestionIndex];
     const isLastQuestion = currentQuestionIndex === backendData.length - 1;
     const option = currentQuestion.options.map((option, index) => (
       <div key={`${currentQuestionIndex}-${index}`}>
@@ -165,7 +182,7 @@ const Quiz = () => {
         />
         {index+1}.&nbsp;&nbsp;
         <label
-          font-size={{ base: '1rem', md: '1.1rem', lg: '1.2rem' }}
+          fontSize={{ base: '1rem', md: '1.1rem', lg: '1.2rem' }}
           dangerouslySetInnerHTML={{ __html: option }}
         />
       </div>
@@ -234,9 +251,115 @@ const Quiz = () => {
         </Flex>
       </>
     );
-  } else if (fetchStatus === "error"){
+  case "error":
     return <p>문제 데이터를 받아오지 못했습니다.</p>
-  } 
-};
+  default:
+    return <p>무언가 잘못되었습니다.</p>
+  }
+}
+
+
+//     if (fetchStatus === "loading" || fetchStatus === "init") {
+//     return (
+//       <Flex w="calc(100wh)" h="calc(100vh)" alignItems="center" justifyContent="center" p="1%">
+//         <Card height={['100%', '80%', '70%', '60%']} width={['100%', '80%', '60%', '50%']} variant="filled" bg="#faf2ff">
+//           <CardBody>
+//             <Stack>
+//               <Skeleton height="40px" />
+//               <Skeleton height="40px" />
+//               <Skeleton height="40px" />
+//             </Stack>
+//           </CardBody>
+//         </Card>
+//       </Flex>
+//     );
+//   } else if (fetchStatus === "loaded") {
+//     const currentQuestion = backendData[currentQuestionIndex];
+//     const isLastQuestion = currentQuestionIndex === backendData.length - 1;
+//     const option = currentQuestion.options.map((option, index) => (
+//       <div key={`${currentQuestionIndex}-${index}`}>
+//         <input
+//           onChange={handleChange}
+//           type="radio"
+//           name="option.question"
+//           value={option}
+//           disabled={userAnswer.length !== currentQuestionIndex}
+//           style={{ margin: "2%", width: "1.1rem", height: "1.1rem", verticalAlign: "middle"}}
+//         />
+//         {index+1}.&nbsp;&nbsp;
+//         <label
+//           font-size={{ base: '1rem', md: '1.1rem', lg: '1.2rem' }}
+//           dangerouslySetInnerHTML={{ __html: option }}
+//         />
+//       </div>
+//     ));
+
+//     let message = "";
+//     if (userAnswer.length === currentQuestionIndex) {
+//       message = "";
+//     } else if (userAnswer[currentQuestionIndex].isCorrect) {
+//       message = "정답입니다🥳";
+//     } else {
+//       message = "오답입니다😥";
+//     }
+    
+//     const answerNumber =  backendData[currentQuestionIndex].options.indexOf(backendData[currentQuestionIndex].answer) + 1;
+
+//     return (
+//       <>
+//         <Flex w="calc(100wh)" h="calc(100vh)" alignItems="center" justifyContent="center" p="1%">
+//           <Card height={['100%', '80%', '70%', '60%']} width={['100%', '80%', '60%', '50%']} variant="filled" bg="#faf2ff">
+//             <CardBody>
+//               <Flex flexDirection="column" h="100%">
+//                 <form onSubmit={handleSubmit}>
+//                   <Box color="#560094" display="block" as="b" fontSize={{ base: '17px', md: '20px', lg: '25px' }}>[{currentQuestionIndex+1}/{backendData.length}]</Box>
+//                   <Box color="#7a00d1" h="6rem"  as="b" fontSize={{ base: '15px', md: '17px', lg: '20px' }} dangerouslySetInnerHTML={{ __html: currentQuestion.question}}/>
+//                   <Box color="#00000" h="15rem" as="b" fontSize={{ base: '13px', md: '15px', lg: '17px' }} >
+//                     {option}
+//                   </Box>
+//                   <Spacer></Spacer>
+//                   <Flex mt="2%">
+//                       <Button mb='1%' fontWeight="medium" fontSize="1rem" colorScheme={userAnswer[currentQuestionIndex] ? (userAnswer[currentQuestionIndex].isCorrect ? 'green' : 'red') : 'transparent'} variant="solid" w="100%">
+//                         {message} {userAnswer.length === currentQuestionIndex + 1 && !userAnswer[currentQuestionIndex].isCorrect && 
+//                         <Text fontSize='1rem'>&nbsp;&nbsp;(정답: {answerNumber}번)</Text>}
+//                       </Button>
+//                       </Flex>
+                      
+//                       <Flex>
+//                         {isLastQuestion ? (
+//                           <>
+//                             {userAnswer.length === backendData.length && (
+//                               <Button 
+//                                 fontWeight="bold" fontSize="1rem" w="100%" colorScheme="messenger" variant="solid" 
+//                                 onClick={handleSubmitAnswers}
+//                               >
+//                                 결과 보러 가기
+//                               </Button>
+//                             )}
+//                           </>
+//                         ) : (
+//                           <Box w="100%">
+//                             <Button 
+//                               fontWeight="medium" fontSize="1rem" colorScheme="purple" variant="solid" w="100%" 
+//                               type="submit" 
+//                               onClick={handleNextQuestion}
+//                             >
+//                               다음 문제로
+//                             </Button>
+//                           </Box>
+//                         )}
+//                       </Flex>
+//                 </form>
+//               </Flex>
+              
+//             </CardBody>
+//           </Card>
+//         </Flex>
+//       </>
+//     );
+//   } else {
+//     return <p>문제 데이터를 받아오지 못했습니다.</p>
+//   } 
+// };
 
 export default Quiz;
