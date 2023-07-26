@@ -41,7 +41,8 @@ $ npm run dev
 
 ## 기술 스택
 - Frontend
-  - HTML5, CSS3, JavaScript
+  - HTML5, CSS3
+  - TypeScript(JavaScript로 배포 이후 TypeScript로 마이그레이션하였습니다.)
   - React.js
   - Chakra UI
 - Backend API
@@ -72,5 +73,6 @@ $ npm run dev
 - [x] 반응형 레이아웃을 구현한다
   - [x] 데스크탑
   - [x] 모바일
+- [x] TypeScript로 마이그레이션 
 
 <br />
