@@ -16,6 +16,13 @@ const Quiz = () => {
 
   type FetchStatus = "init" | "loading" | "loaded" | "error";
 
+  // enum FetchStatus {
+  //   init = "init",
+  //   loading = "loading",
+  //   loaded = "loaded",
+  //   error = "error",
+  // }
+
   type Question = {
     category: string;
     type: string;
