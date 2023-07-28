@@ -12,6 +12,7 @@ import {
 
 const Home = () => {
   type NickName = string;
+
   type StartTime = number | null;
 
   const [nickname, setNickname] = useState<NickName>("");
