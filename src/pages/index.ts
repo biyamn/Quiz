@@ -1,15 +1,4 @@
-// App의 입장에서
-// export default Home -> 이름이 없어짐. 그냥 그자체가 됨
-// -> default를 찾아줘야 함!! 그리고 Home이라고 이름지어줌
-export { default as Home } from './Home';
-export { default as Quiz } from './Quiz';
-export { default as Result } from './Result';
-
-// export * from './Home';
-// export * from './Quiz';
-// export * from './Result';
-
-// import Home from './Home';
-// import Quiz from './Quiz';
-// import Result from './Result';
-// export { Home, Quiz, Result };
+// Home, Quiz, Result에서 export default로 내보냈으므로 default를 Home, Quiz, Result로 따로 이름지어서 가져와서 내보내야 함
+export { default as Home } from "./Home";
+export { default as Quiz } from "./Quiz";
+export { default as Result } from "./Result";
