@@ -1,5 +1,5 @@
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Flex, Text, Card, CardBody, Button } from '@chakra-ui/react';
+import { useLocation, useNavigate } from "react-router-dom";
+import { Flex, Text, Card, CardBody, Button } from "@chakra-ui/react";
 
 const Result = () => {
   const navigate = useNavigate();
@@ -7,23 +7,49 @@ const Result = () => {
   const correctNumber = location.state.numberOfCorrect;
   const incorrectNumber = location.state.numberOfIncorrect;
   const sumNumber = correctNumber + incorrectNumber;
-  
+
   const buttonHandler = () => {
-    navigate('/');
-  }
+    navigate("/");
+  };
 
   return (
-    <Flex w="calc(100wh)" h="calc(100vh)" alignItems="center" justifyContent="center">
-      <Card height={['100%', '80%', '70%', '60%']} width={['100%', '80%', '60%', '50%']}  variant="filled" bg="#faf2ff">
+    <Flex
+      w="calc(100wh)"
+      h="calc(100vh)"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Card
+        height={["100%", "80%", "70%", "60%"]}
+        width={["100%", "80%", "60%", "50%"]}
+        variant="filled"
+        bg="#faf2ff"
+      >
         <CardBody>
-          <Flex alignItems="center" justifyContent="center" flexDirection="column" h="100%">
-            <Text color="#6c23a1" fontSize={{ base: '25px', md: '30px', lg: '40px' }}>
+          <Flex
+            alignItems="center"
+            justifyContent="center"
+            flexDirection="column"
+            h="100%"
+          >
+            <Text
+              color="#6c23a1"
+              fontSize={{ base: "25px", md: "30px", lg: "40px" }}
+            >
               <b>{location.state.nickname}님</b>의 결과는?
             </Text>
-            <Text color="purple" fontSize={{ base: '25px', md: '35px', lg: '45px' }}>
-            🎉 <b>{Math.floor((correctNumber / sumNumber) * 100)}점!!</b> 🎉
+            <Text
+              color="purple"
+              fontSize={{ base: "25px", md: "35px", lg: "45px" }}
+            >
+              🎉 <b>{Math.floor((correctNumber / sumNumber) * 100)}점!!</b> 🎉
             </Text>
-            <Flex alignItems="center" justifyContent="center" flexDirection="column" mt="3rem">
+            <Flex
+              alignItems="center"
+              justifyContent="center"
+              flexDirection="column"
+              mt="3rem"
+            >
               <Text color="#6c23a1" fontSize="1.3rem">
                 정답: ({correctNumber}/{sumNumber})개
               </Text>
@@ -33,7 +59,14 @@ const Result = () => {
               <Text color="#6c23a1" fontSize="1.3rem" mt="1rem">
                 시간: {location.state.timeTaken}초
               </Text>
-              <Button mt="3rem" colorScheme='purple' width="10rem" onClick={buttonHandler}>다시 풀기</Button>
+              <Button
+                mt="3rem"
+                colorScheme="purple"
+                width="10rem"
+                onClick={buttonHandler}
+              >
+                다시 풀기
+              </Button>
             </Flex>
           </Flex>
         </CardBody>
