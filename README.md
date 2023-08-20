@@ -3,7 +3,7 @@
 <div align="center">
   <img src='https://github.com/biyamn/Quiz-App/assets/101965666/073258a9-4904-4e04-9c17-d606bece029b' width="60%"/>
 
-**배포 링크**: https://quiz-zik.netlify.app/
+**배포 링크**: hhttps://quiz.biyamn.dev
 
 </div>
 
