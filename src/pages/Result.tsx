@@ -1,7 +1,5 @@
-import { useLocation, useNavigate } from 'react-router-dom';
-import {
-  Flex, Text, Card, CardBody, Button,
-} from '@chakra-ui/react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Flex, Text, Card, CardBody, Button } from '@chakra-ui/react';
 
 function Result() {
   const navigate = useNavigate();
@@ -38,23 +36,17 @@ function Result() {
               color="#6c23a1"
               fontSize={{ base: '25px', md: '30px', lg: '40px' }}
             >
-              <b>
-                {location.state.nickname}
-                님
-              </b>
-              의 결과는?
+              <b>{location.state.nickname}님</b>의 결과는?
             </Text>
             <Text
               color="purple"
               fontSize={{ base: '25px', md: '35px', lg: '45px' }}
             >
-              🎉
-              {' '}
+              🎉{' '}
               <b>
                 {Math.floor((correctNumber / sumNumber) * 100)}
                 점!!
-              </b>
-              {' '}
+              </b>{' '}
               🎉
             </Text>
             <Flex
@@ -64,24 +56,15 @@ function Result() {
               mt="3rem"
             >
               <Text color="#6c23a1" fontSize="1.3rem">
-                정답: (
-                {correctNumber}
-                /
-                {sumNumber}
+                정답: ({correctNumber}/{sumNumber}
                 )개
               </Text>
               <Text color="#6c23a1" fontSize="1.3rem" mt="1rem">
-                오답: (
-                {incorrectNumber}
-                /
-                {sumNumber}
+                오답: ({incorrectNumber}/{sumNumber}
                 )개
               </Text>
               <Text color="#6c23a1" fontSize="1.3rem" mt="1rem">
-                시간:
-                {' '}
-                {location.state.timeTaken}
-                초
+                시간: {location.state.timeTaken}초
               </Text>
               <Button
                 mt="3rem"
