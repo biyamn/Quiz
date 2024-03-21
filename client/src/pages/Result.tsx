@@ -1,5 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Flex, Text, Card, CardBody, Button } from '@chakra-ui/react';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 function Result() {
   const navigate = useNavigate();
@@ -11,6 +13,25 @@ function Result() {
   const buttonHandler = () => {
     navigate('/');
   };
+
+  useEffect(() => {
+    const userData = {
+      id: 3,
+      nickname: location.state.nickname,
+      score: Math.floor((correctNumber / sumNumber) * 100),
+      time: location.state.timeTaken,
+    };
+
+    const postData = async () => {
+      try {
+        await axios.post('http://localhost:8800/api/user', userData);
+        console.log('user data posted: ', userData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    postData();
+  }, []);
 
   return (
     <Flex
@@ -74,7 +95,7 @@ function Result() {
               >
                 다시 풀기
               </Button>
-              <Link to="/ranking">
+              <Link to="/rank">
                 <Button>랭킹 보기</Button>
               </Link>
             </Flex>
