@@ -7,9 +7,15 @@ const Rank = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:8800/api/user');
-        console.log(response.data);
-        setUsers(response.data);
+        const response = await axios.get('http://localhost:8000/api/user');
+        const data = response.data;
+        const sortedData = data.sort((a: any, b: any) => {
+          if (a.score === b.score) {
+            return a.time - b.time;
+          }
+          return b.score - a.score;
+        });
+        setUsers(sortedData);
       } catch (error) {
         console.error(error);
       }

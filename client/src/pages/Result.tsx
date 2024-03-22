@@ -24,7 +24,7 @@ function Result() {
 
     const postData = async () => {
       try {
-        await axios.post('http://localhost:8800/api/user', userData);
+        await axios.post('http://localhost:8000/api/user', userData);
         console.log('user data posted: ', userData);
       } catch (error) {
         console.error(error);
