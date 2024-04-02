@@ -7,7 +7,7 @@ const Rank = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/user');
+        const response = await axios.get('http://localhost:3000/users');
         const data = response.data;
         const sortedData = data.sort((a: any, b: any) => {
           if (a.score === b.score) {
@@ -23,13 +23,14 @@ const Rank = () => {
     fetchData();
   }, []);
 
+  console.log(users);
   return (
     <div>
       <h1>~~db에 저장된 랭킹 보기~~</h1>
       <ul>
         {users.map((user: any, index: number) => (
           <li key={index}>
-            {user.nickname} - {user.score}점 - {user.time}초
+            {user.nickname} - {user.score}점 - {user.time / 1000}초
           </li>
         ))}
       </ul>

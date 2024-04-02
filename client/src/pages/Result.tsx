@@ -16,15 +16,14 @@ function Result() {
 
   useEffect(() => {
     const userData = {
-      id: 3,
       nickname: location.state.nickname,
       score: Math.floor((correctNumber / sumNumber) * 100),
-      time: location.state.timeTaken,
+      time: location.state.timeTaken * 1000,
     };
 
     const postData = async () => {
       try {
-        await axios.post('http://localhost:8000/api/user', userData);
+        await axios.post('http://localhost:3000/users', userData);
         console.log('user data posted: ', userData);
       } catch (error) {
         console.error(error);
