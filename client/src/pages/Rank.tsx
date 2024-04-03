@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Flex, Text, Card, CardBody, Button } from '@chakra-ui/react';
 
 const Rank = () => {
   const [users, setUsers] = useState([]);
@@ -25,16 +26,40 @@ const Rank = () => {
 
   console.log(users);
   return (
-    <div>
-      <h1>~~db에 저장된 랭킹 보기~~</h1>
-      <ul>
-        {users.map((user: any, index: number) => (
-          <li key={index}>
-            {user.nickname} - {user.score}점 - {user.time / 1000}초
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Flex
+      w="calc(100wh)"
+      h="calc(100vh)"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Card
+        height={['100%', '80%', '70%', '60%']}
+        width={['100%', '80%', '60%', '50%']}
+        variant="filled"
+        bg="#faf2ff"
+      >
+        <CardBody>
+          <Flex
+            alignItems="center"
+            justifyContent="center"
+            flexDirection="column"
+            h="100%"
+          >
+            <Text
+              color="purple"
+              fontSize={{ base: '25px', md: '35px', lg: '45px' }}
+            >
+              랭킹
+            </Text>
+            {users.map((user: any, index: number) => (
+              <div key={index}>
+                {user.nickname} - {user.score}점 - {user.time / 1000}초
+              </div>
+            ))}
+          </Flex>
+        </CardBody>
+      </Card>
+    </Flex>
   );
 };
 

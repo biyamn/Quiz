@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
   Flex,
   Stack,
@@ -10,7 +10,8 @@ import {
   Text,
   CardBody,
   Spacer,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
+import axios from 'axios';
 
 const Quiz = () => {
   type Location = {
@@ -24,7 +25,7 @@ const Quiz = () => {
     key: string;
   };
 
-  type FetchStatus = "init" | "loading" | "loaded" | "error";
+  type FetchStatus = 'init' | 'loading' | 'loaded' | 'error';
 
   type Question = {
     category: string;
@@ -56,7 +57,7 @@ const Quiz = () => {
   type EndTime = number | null;
 
   const [backendData, setBackendData] = useState<BackendData>([]);
-  const [fetchStatus, setFetchStatus] = useState<FetchStatus>("init");
+  const [fetchStatus, setFetchStatus] = useState<FetchStatus>('init');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userAnswer, setUserAnswer] = useState<UserAnswer>([]);
   const [endTime, setEndTime] = useState<EndTime>(null);
@@ -65,15 +66,15 @@ const Quiz = () => {
   const location: Location = useLocation();
   const startTime = location.state.startTime;
   const url: string =
-    "https://opentdb.com/api.php?amount=4&category=18&type=multiple";
+    'https://opentdb.com/api.php?amount=4&category=18&type=multiple';
 
   const fetchData = async () => {
-    setFetchStatus("loading");
+    setFetchStatus('loading');
     try {
       const response = await fetch(url);
       const data = await response.json();
       const newData = data.results.map((question: Question) => {
-        console.log("question", question);
+        console.log('question', question);
         const answer = question.correct_answer;
         const random = [
           question.correct_answer,
@@ -86,9 +87,9 @@ const Quiz = () => {
         };
       });
       setBackendData(newData);
-      setFetchStatus("loaded");
+      setFetchStatus('loaded');
     } catch (error) {
-      setFetchStatus("error");
+      setFetchStatus('error');
     }
   };
 
@@ -100,7 +101,7 @@ const Quiz = () => {
     if (userAnswer.length === currentQuestionIndex + 1) {
       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
     } else {
-      alert("문항을 선택해주세요");
+      alert('문항을 선택해주세요');
     }
   };
 
@@ -131,9 +132,26 @@ const Quiz = () => {
 
     setEndTime(endTime);
 
-    const timeTaken = (endTime - startTime) / 1000;
+    const timeTaken = endTime - startTime;
 
-    navigate("/result", {
+    const sumNumber = numberOfCorrect + numberOfIncorrect;
+    const userData = {
+      nickname: location.state.nickname,
+      score: Math.floor((numberOfCorrect / sumNumber) * 100),
+      time: timeTaken,
+    };
+
+    const postData = async () => {
+      try {
+        await axios.post('http://localhost:3000/users', userData);
+        console.log('user data posted: ', userData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    postData();
+
+    navigate('/result', {
       state: {
         numberOfCorrect: numberOfCorrect,
         numberOfIncorrect: numberOfIncorrect,
@@ -144,8 +162,8 @@ const Quiz = () => {
   };
 
   switch (fetchStatus) {
-    case "init":
-    case "loading":
+    case 'init':
+    case 'loading':
       return (
         <Flex
           w="calc(100wh)"
@@ -155,8 +173,8 @@ const Quiz = () => {
           p="1%"
         >
           <Card
-            height={["100%", "80%", "70%", "60%"]}
-            width={["100%", "80%", "60%", "50%"]}
+            height={['100%', '80%', '70%', '60%']}
+            width={['100%', '80%', '60%', '50%']}
             variant="filled"
             bg="#faf2ff"
           >
@@ -170,7 +188,7 @@ const Quiz = () => {
           </Card>
         </Flex>
       );
-    case "loaded":
+    case 'loaded':
       const currentQuestion = backendData[currentQuestionIndex];
       const isLastQuestion = currentQuestionIndex === backendData.length - 1;
       const option = currentQuestion.options.map((option, index) => (
@@ -182,27 +200,27 @@ const Quiz = () => {
             value={option}
             disabled={userAnswer.length !== currentQuestionIndex}
             style={{
-              margin: "2%",
-              width: "1.1rem",
-              height: "1.1rem",
-              verticalAlign: "middle",
+              margin: '2%',
+              width: '1.1rem',
+              height: '1.1rem',
+              verticalAlign: 'middle',
             }}
           />
           {index + 1}.&nbsp;&nbsp;
           <label
-            font-size={{ base: "1rem", md: "1.1rem", lg: "1.2rem" }}
+            font-size={{ base: '1rem', md: '1.1rem', lg: '1.2rem' }}
             dangerouslySetInnerHTML={{ __html: option }}
           />
         </div>
       ));
 
-      let message = "";
+      let message = '';
       if (userAnswer.length === currentQuestionIndex) {
-        message = "";
+        message = '';
       } else if (userAnswer[currentQuestionIndex].isCorrect) {
-        message = "정답입니다🥳";
+        message = '정답입니다🥳';
       } else {
-        message = "오답입니다😥";
+        message = '오답입니다😥';
       }
 
       const answerNumber =
@@ -220,8 +238,8 @@ const Quiz = () => {
             p="1%"
           >
             <Card
-              height={["100%", "80%", "70%", "60%"]}
-              width={["100%", "80%", "60%", "50%"]}
+              height={['100%', '80%', '70%', '60%']}
+              width={['100%', '80%', '60%', '50%']}
               variant="filled"
               bg="#faf2ff"
             >
@@ -232,7 +250,7 @@ const Quiz = () => {
                       color="#560094"
                       display="block"
                       as="b"
-                      fontSize={{ base: "17px", md: "20px", lg: "25px" }}
+                      fontSize={{ base: '17px', md: '20px', lg: '25px' }}
                     >
                       [{currentQuestionIndex + 1}/{backendData.length}]
                     </Box>
@@ -240,7 +258,7 @@ const Quiz = () => {
                       color="#7a00d1"
                       h="6rem"
                       as="b"
-                      fontSize={{ base: "15px", md: "17px", lg: "20px" }}
+                      fontSize={{ base: '15px', md: '17px', lg: '20px' }}
                       dangerouslySetInnerHTML={{
                         __html: currentQuestion.question,
                       }}
@@ -249,7 +267,7 @@ const Quiz = () => {
                       color="#00000"
                       h="15rem"
                       as="b"
-                      fontSize={{ base: "13px", md: "15px", lg: "17px" }}
+                      fontSize={{ base: '13px', md: '15px', lg: '17px' }}
                     >
                       {option}
                     </Box>
@@ -262,14 +280,14 @@ const Quiz = () => {
                         colorScheme={
                           userAnswer[currentQuestionIndex]
                             ? userAnswer[currentQuestionIndex].isCorrect
-                              ? "green"
-                              : "red"
-                            : "transparent"
+                              ? 'green'
+                              : 'red'
+                            : 'transparent'
                         }
                         variant="solid"
                         w="100%"
                       >
-                        {message}{" "}
+                        {message}{' '}
                         {userAnswer.length === currentQuestionIndex + 1 &&
                           !userAnswer[currentQuestionIndex].isCorrect && (
                             <Text fontSize="1rem">
@@ -318,7 +336,7 @@ const Quiz = () => {
           </Flex>
         </>
       );
-    case "error":
+    case 'error':
       return <p>문제 데이터를 받아오지 못했습니다.</p>;
     // default:
     //   return <p>무언가 잘못되었습니다.</p> // 얘도 됨
